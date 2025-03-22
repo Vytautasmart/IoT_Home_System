@@ -4,7 +4,6 @@ from dash.dependencies import Input, Output, State
 import plotly.graph_objs as go
 import numpy as np
 import threading
-import time
 from flask import Flask
 from data_processing import light_levels, distances, temperatures
 

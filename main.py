@@ -2,39 +2,41 @@ import time
 import threading
 import serial
 from data_processing import read_serial
-import visualization  # Import the Dash-based visualization script
+from dashboard import app
 
-# Serial connection settings
-SERIAL_PORT = 'COM5'  # Change this to match your Arduino's port
+# 👇 Update this to match your device's serial port
+SERIAL_PORT = 'COM5'        # Example: 'COM5' on Windows, '/dev/ttyUSB0' on Linux/Mac
 BAUD_RATE = 115200
 TIMEOUT = 1
 
-# Initialize Serial Port
-ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=TIMEOUT)
+# 🔌 Connect to Arduino
+try:
+    ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=TIMEOUT)
+    print(f"[INFO] Connected to Arduino on {SERIAL_PORT} at {BAUD_RATE} baud.")
+except serial.SerialException as e:
+    print(f"[ERROR] Could not open serial port {SERIAL_PORT}. {e}")
+    exit(1)
 
-
+# Thread to handle serial data reading
 def serial_thread():
-    """Thread to read serial data from Arduino"""
     read_serial(ser)
 
+# Thread to run the Dash dashboard
+def dash_thread():
+    app.run(debug=False, use_reloader=False)
 
+# Main function to start everything
 def main():
-    print(f"Connected to Arduino on {SERIAL_PORT} at {BAUD_RATE} baud.")
-    
-    # Give Arduino time to reset
-    time.sleep(2)
+    time.sleep(2)  # Allow Arduino to reset
 
-    # Start Serial Thread (Reads data continuously)
-    thread = threading.Thread(target=serial_thread, daemon=True)
-    thread.start()
+    threading.Thread(target=serial_thread, daemon=True).start()
+    threading.Thread(target=dash_thread, daemon=True).start()
 
-    # Start Dash Visualization (Runs in separate thread inside visualization.py)
-    print("Starting IoT Sensor Dashboard...")
-    
-    # The Dash server runs automatically in the background from visualization.py
+    print("[INFO] Dashboard is running. Press Ctrl+C to stop.")
+
+    # Keep the main program alive
     while True:
-        time.sleep(1)  # Keeps the main thread alive
-
+        time.sleep(1)
 
 if __name__ == "__main__":
     main()

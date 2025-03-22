@@ -1,0 +1,81 @@
+.input-box {
+    margin-bottom: 10px;
+    display: block;
+    padding: 5px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.export-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.export-btn:hover {
+    background-color: #0056b3;
+}
+.grid-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.grid-item {
+    flex: 1;
+    min-width: 200px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+.input-box {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 8px;
+    margin-right: 10px;
+    width: 100px;
+}
+
+.export-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.export-btn:hover {
+    background-color: #0056b3;
+}
+
+.card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-light {
+    font-weight: bold;
+    font-size: 16px;
+}
