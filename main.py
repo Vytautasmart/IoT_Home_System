@@ -4,12 +4,12 @@ import serial
 from data_processing import read_serial
 from dashboard import app
 
-# 👇 Update this to match your device's serial port
+# Update this to match your device's serial port
 SERIAL_PORT = 'COM5'        # Example: 'COM5' on Windows, '/dev/ttyUSB0' on Linux/Mac
 BAUD_RATE = 115200
 TIMEOUT = 1
 
-# 🔌 Connect to Arduino
+# Connect to Arduino
 try:
     ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=TIMEOUT)
     print(f"[INFO] Connected to Arduino on {SERIAL_PORT} at {BAUD_RATE} baud.")
